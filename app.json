@@ -1,16 +1,21 @@
 {
-	"reponame":"iotapp-template-digital-read",
-	"title":"Digital Read",
-	"tooltip":"A simple node.js application intended to read data from Digital pins on the Intel based development boards such as the Intel(R) Galileo and Edison with Arduino breakout board.",
-	"description":"A simple node.js application intended to read data from Digital pins on the Intel based development boards such as the Intel(R) Galileo and Edison with Arduino breakout board.",
-	"articleurl":"https://software.intel.com/en-us/xdk/docs/intel-xdk-iot-edition-nodejs-templates",
-    "screenshotUrl":"",
-    "iconUrl":"",
-	"highlights":[""],
-    "keywords":[""],
-	"visible": "true",
-	"apppreview":"false",
-	"appname":"demo.digitalread",
-	"relname":"4.0.0",
-	"projectTypeName": "com.intel.xdk.projecttype.iotapp"
+   "highlights" : [
+      ""
+   ],
+   "mobile" : false,
+   "screenshotUrl" : "",
+   "articleUrl" : "https://software.intel.com/en-us/xdk/docs/intel-xdk-iot-edition-nodejs-templates",
+   "projectTypeName" : "com.intel.xdk.projecttype.iotapp",
+   "description" : "A simple node.js application intended to read data from Digital pins on the Intel based development boards such as the Intel(R) Galileo and Edison with Arduino breakout board.",
+   "appPreview" : false,
+   "relName" : "4.0.0",
+   "title" : "Digital Read",
+   "iconUrl" : "",
+   "repoName" : "iotapp-template-digital-read",
+   "visible" : true,
+   "appName" : "demo.digitalread",
+   "keywords" : [
+      ""
+   ],
+   "tooltip" : "A simple node.js application intended to read data from Digital pins on the Intel based development boards such as the Intel(R) Galileo and Edison with Arduino breakout board."
 }
