@@ -12,6 +12,8 @@
    "title" : "Digital Read",
    "iconUrl" : "",
    "repoName" : "iotapp-template-digital-read",
+   "section" : "iot-templates",
+   "group" : "other",
    "visible" : true,
    "appName" : "demo.digitalread",
    "keywords" : [
