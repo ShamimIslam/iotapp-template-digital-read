@@ -90,7 +90,7 @@ module.exports = function(options) {
             case cfg.mraa.INTEL_GALILEO_GEN1:           // Gallileo Gen 1
             case cfg.mraa.INTEL_GALILEO_GEN2:           // Gallileo Gen 2
             case cfg.mraa.INTEL_EDISON_FAB_C:           // Edison
-                gpio = opt.altGpio ? gpio : 7 ;         // use alternate I/O pin?
+                gpio = opt.altGpio ? gpio : 6 ;         // use alternate I/O pin?
                 cfg.gpio = new cfg.mraa.Gpio(gpio) ;    // initialize digital I/O pin
                 break ;
 
