@@ -27,7 +27,7 @@ following line of code, in the `cfg.init` method:
     gpio = opt.altGpio ? gpio : 7 ;         // use alternate pin?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this case, header "pin 7" will be initialied as the digital input.
+In the example shown above, header "pin 7" will be used for the digital input.
 
 **IMPORTANT:** the pin that is configured by the sample is a function of the
 detected board. You **must** inspect the code to determine which pin is being
@@ -35,7 +35,8 @@ configured for use on your board!!
 
 Once you have identified the GPIO pin that is being read, you can use a jumper
 wire to change the input value of that digital input to a one or zero, by
-connecting the input to a +5V or GND point on your board's header.
+connecting one end of the jumper wire to the initialized digital input and the
+other end of the jumper to a +5V or GND point on your board's header.
 
 Most boards have many pins that can be configured for use as a digital input.
 The `cfg-app-platform.js` module has been designed so you can override the pin
