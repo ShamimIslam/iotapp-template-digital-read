@@ -1,32 +1,56 @@
-/*jslint node:true, vars:true, bitwise:true, unparam:true */
-/*jshint unused:true */
-
 /*
-A simple node.js application intended to read data from Digital pins on the Intel based development boards such as the Intel(R) Galileo and Edison with Arduino breakout board.
+ * A simple Node.js application to read a digital input.
+ * Supported Intel IoT development boards are identified in the code.
+ *
+ * https://software.intel.com/en-us/html5/articles/intel-xdk-iot-edition-nodejs-templates
+ */
 
-MRAA - Low Level Skeleton Library for Communication on GNU/Linux platforms
-Library in C/C++ to interface with Galileo & other Intel platforms, in a structured and sane API with port nanmes/numbering that match boards & with bindings to javascript & python.
+// keep /*jslint and /*jshint lines for proper jshinting and jslinting
+// see http://www.jslint.com/help.html and http://jshint.com/docs
+/* jslint node:true */
+/* jshint unused:true */
 
-Steps for installing MRAA & UPM Library on Intel IoT Platform with IoTDevKit Linux* image
-Using a ssh client: 
-1. echo "src maa-upm http://iotdk.intel.com/repos/1.1/intelgalactic" > /etc/opkg/intel-iotdk.conf
-2. opkg update
-3. opkg upgrade
+"use strict" ;
 
-Article: https://software.intel.com/en-us/html5/articles/intel-xdk-iot-edition-nodejs-templates
-*/
 
-var mraa = require('mraa'); //require mraa
-console.log('MRAA Version: ' + mraa.getVersion()); //write the mraa version to the console
+var APP_NAME = "IoT Digital Read" ;
+var cfg = require("./cfg-app-platform.js")() ;          // init and config I/O resources
 
-var myDigitalPin6 = new mraa.Gpio(6); //setup digital read on Digital pin #6 (D6)
-myDigitalPin6.dir(mraa.DIR_IN); //set the gpio direction to input
+console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n") ;   // poor man's clear console
+console.log("Initializing " + APP_NAME) ;
 
-periodicActivity(); //call the periodicActivity function
 
-function periodicActivity() //
-{
-  var myDigitalValue =  myDigitalPin6.read(); //read the digital value of the pin
-  console.log('Gpio is ' + myDigitalValue); //write the read value out to the console
-  setTimeout(periodicActivity,1000); //call the indicated function after 1 second (1000 milliseconds)
+// confirm that we have a version of libmraa and Node.js that works
+// exit this app if we do not
+
+cfg.identify() ;    // prints some interesting platform details to console, more later
+
+if( !cfg.test() ) {
+    process.exitCode = 1 ;
+    throw new Error("Call to cfg.test() failed, check console messages for details.") ;
 }
+if( !cfg.init() ) {
+    process.exitCode = 1 ;
+    throw new Error("Call to cfg.init() failed, check console messages for details.") ;
+}
+
+
+// now we are going to read the digital input at a periodic interval
+// connect a jumper wire to the sampled digital input and touch it to
+// a +5V or GND input to change the state read by the digital input
+
+var digIn ;
+var periodicActivity = function() {
+    digIn = cfg.gpio.read() ;                   // get the current state of the digital input
+    process.stdout.write(digIn?'1':'0') ;       // write an unending stream of 1/0 states to the console
+} ;
+var intervalID = setInterval(periodicActivity, 1000) ;  // start the periodic toggle
+
+
+// type process.exit(0) in debug console to see
+// the following message be emitted to the debug console
+
+process.on("exit", function(code) {
+    clearInterval(intervalID) ;
+    console.log("\nExiting " + APP_NAME + ", with code:", code) ;
+}) ;
