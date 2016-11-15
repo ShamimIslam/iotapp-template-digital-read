@@ -65,6 +65,20 @@ module.exports = function(options) {
 
 
 /**
+ * Where we return the I/O object that is used to manipulate
+ * the I/O pin used by this application.
+ *
+ * See the cfg.init() function for details regarding which
+ * I/O pins are used on which board.
+ *
+ * @member {Object} contains GPIO object to be used by caller
+ */
+
+    cfg.gpio = {} ;                                 // to return mraa digital I/O object
+
+
+
+/**
  * Using the mraa library, detect which platform we are running on
  * and make appropriate adjustments to our gpio configuration calls.
  *
@@ -78,8 +92,6 @@ module.exports = function(options) {
  * @return {Boolean} true if supported platform detected (and initialized)
  * @author Paul Fischer, Intel Corporation
  */
-
-    cfg.gpio = {} ;                                     // to return mraa digital I/O object
 
     cfg.init = function() {
 
@@ -109,7 +121,7 @@ module.exports = function(options) {
                 }
         }
         if( chkPlatform )
-            cfg.gpio.dir(cfg.mraa.DIR_OUT) ;            // configure the gpio pin as an output
+            cfg.gpio.dir(cfg.mraa.DIR_IN) ;             // configure the gpio pin as an output
 
         return chkPlatform ;
     } ;
@@ -129,7 +141,7 @@ module.exports = function(options) {
 
     cfg.test = function() {
 
-        if( opt.skipTest )     // if bypass version testing
+        if( opt.skipTest )                              // if bypassing version testing
             return true ;                               // pretend platform tests passed
 
         var checkNode = false ;
