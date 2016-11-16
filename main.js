@@ -2,6 +2,8 @@
  * A simple Node.js application to read a digital input.
  * Supported Intel IoT development boards are identified in the code.
  *
+ * See LICENSE.md for license terms and conditions.
+ *
  * https://software.intel.com/en-us/html5/articles/intel-xdk-iot-edition-nodejs-templates
  */
 
@@ -41,6 +43,8 @@ if( !cfg.init() ) {
 
 cfg.io = new cfg.mraa.Gpio(cfg.ioPin,cfg.ioOwner,cfg.ioRaw) ;
 cfg.io.dir(cfg.mraa.DIR_IN) ;                   // configure the gpio as an input
+
+console.log("Using digital input pin number: " + cfg.ioPin) ;
 
 
 // now we are going to read the digital input at a periodic interval
