@@ -23,28 +23,36 @@ console.log("Initializing " + APP_NAME) ;
 // confirm that we have a version of libmraa and Node.js that works
 // exit this app if we do not
 
-cfg.identify() ;    // prints some interesting platform details to console, more later
+cfg.identify() ;                // prints some interesting platform details to console
 
 if( !cfg.test() ) {
     process.exitCode = 1 ;
     throw new Error("Call to cfg.test() failed, check console messages for details.") ;
 }
+
 if( !cfg.init() ) {
     process.exitCode = 1 ;
     throw new Error("Call to cfg.init() failed, check console messages for details.") ;
 }
 
 
+// configure (initialize) our I/O pins for usage (gives us an I/O object)
+// configuration is based on parameters provided by the call to cfg.init()
+
+cfg.io = new cfg.mraa.Gpio(cfg.ioPin,cfg.ioOwner,cfg.ioRaw) ;
+cfg.io.dir(cfg.mraa.DIR_IN) ;                   // configure the gpio as an input
+
+
 // now we are going to read the digital input at a periodic interval
 // connect a jumper wire to the sampled digital input and touch it to
-// a +5V or GND input to change the state read by the digital input
+// a +3.3V or GND input to change the state read by the digital input
 
 var digIn ;
 var periodicActivity = function() {
-    digIn = cfg.gpio.read() ;                   // get the current state of the digital input
+    digIn = cfg.io.read() ;                     // get the current state of the digital input
     process.stdout.write(digIn?'1':'0') ;       // write an unending stream of 1/0 states to the console
 } ;
-var intervalID = setInterval(periodicActivity, 1000) ;  // start the periodic toggle
+var intervalID = setInterval(periodicActivity, 1000) ;  // start the periodic read
 
 
 // type process.exit(0) in debug console to see
