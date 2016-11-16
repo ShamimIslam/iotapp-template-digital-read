@@ -1,15 +1,15 @@
-Intel® XDK IoT Digital Pin Read App
-===================================
+Intel® XDK IoT Node.js* Digital Pin Read App
+============================================
 See [LICENSE.md](LICENSE.md) for license terms and conditions.
 
-This sample application is distributed as part of the [Intel®
-XDK](http://xdk.intel.com). It can also be downloaded or cloned directly from
-its git repo on the [public Intel XDK GitHub\*
-site](https://github.com/gomobile).
+This sample application is distributed as part of the
+[Intel® XDK](http://xdk.intel.com). It can also be downloaded
+or cloned directly from its git repo on the
+[public Intel XDK GitHub\* site](https://github.com/gomobile).
 
-For help getting started developing applications
-with the Intel XDK, please start with the
-[Intel XDK documentation](https://software.intel.com/en-us/xdk/docs).
+For help getting started developing applications with the
+Intel XDK, please start with
+[the Intel XDK documentation](https://software.intel.com/en-us/xdk/docs).
 
 App Overview
 ------------
@@ -24,10 +24,10 @@ read to the console. The specific pin that is read is configured in
 following line of code, in the `cfg.init` method:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    gpio = opt.altGpio ? gpio : 7 ;         // use alternate pin?
+    io = opt.altPin ? io : 7 ;              // use alternate pin?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In the example shown above, header "pin 7" will be used for the digital input.
+In the example shown above, digital "pin 7" will be used for the digital input.
 
 **IMPORTANT:** the pin that is configured by the sample is a function of the
 detected board. You **must** inspect the code to determine which pin is being
@@ -36,7 +36,7 @@ configured for use on your board!!
 Once you have identified the GPIO pin that is being read, you can use a jumper
 wire to change the input value of that digital input to a one or zero, by
 connecting one end of the jumper wire to the initialized digital input and the
-other end of the jumper to a +5V or GND point on your board's header.
+other end of the jumper to a +3.3V or GND point on your board's header.
 
 Most boards have many pins that can be configured for use as a digital input.
 The `cfg-app-platform.js` module has been designed so you can override the pin

@@ -4,7 +4,7 @@
   "sample": false,
   "template": true,
   "visible" : true,
-  "sortWeight" : "0.0",
+  "sortWeight" : "0.8",
   "repoName" : "iotapp-template-digital-read",
   "tooltip" : "Read data from a digital I/O pin.",
   "description" : "A simple Node.js application that reads an onboard digital input (a GPIO input), on select Intel IoT development boards, and displays the result of that read on the console log.",
