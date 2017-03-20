@@ -1,6 +1,6 @@
 {
   "name": "xdk-iot-digital-read",
-  "description": "",
+  "description": "Intel XDK IoT Digital Pin Read App",
   "version": "0.0.0",
   "main": "main.js",
   "engines": {
